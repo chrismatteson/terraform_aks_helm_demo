@@ -25,3 +25,7 @@ output "kube_config" {
 output "host" {
   value = "${azurerm_kubernetes_cluster.k8s.kube_config.0.host}"
 }
+
+output "consul_external_ips" {
+  value = "${data.kubernetes_service.consul.load_balancer_ingress.0.ip}"
+}
