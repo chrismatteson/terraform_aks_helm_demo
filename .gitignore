@@ -9,3 +9,4 @@
 *.tfvars
 
 consul-helm
+azurek8s

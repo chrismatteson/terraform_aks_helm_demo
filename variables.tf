@@ -13,3 +13,8 @@ variable log_analytics_workspace_sku {
 variable "ssh_public_key" {
   default = "~/.ssh/id_rsa.pub"
 }
+
+variable "tags" {
+  type    = "map"
+  default = {}
+}

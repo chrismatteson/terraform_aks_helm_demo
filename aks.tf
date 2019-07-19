@@ -1,14 +1,23 @@
+# Generate random project name
 resource "random_id" "project_name" {
   byte_length = 4
+  prefix      = "CM"
 }
 
+# Generate client secret
 resource "random_id" "client_secret" {
   byte_length = 32
+}
+
+# Local for tag to attach to all items
+locals {
+  tags = "${merge(var.tags, map("ProjectName", random_id.project_name.hex))}"
 }
 
 resource "azurerm_resource_group" "k8s" {
   name     = "${random_id.project_name.hex}-rg"
   location = "${var.location}"
+  tags     = "${local.tags}"
 }
 
 resource "azurerm_azuread_application" "k8s" {
